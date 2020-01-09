@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.UserMapper">
+    <select id="loginByPassword" parameterType="com.store.store.entity.User" resultType="com.store.store.entity.User">
+		SELECT * FROM `_user` WHERE userName =#{userName} and password = #{password}
+	</select>
+</mapper>
