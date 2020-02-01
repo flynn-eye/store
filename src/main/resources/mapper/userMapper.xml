@@ -4,4 +4,29 @@
     <select id="loginByPassword" parameterType="com.store.store.entity.User" resultType="com.store.store.entity.User">
 		SELECT * FROM `_user` WHERE userName =#{userName} and password = #{password}
 	</select>
+	<select id="getUserList" resultType="com.store.store.entity.User">
+		SELECT u.userId,u.userName,u.phone,u.role,u.name,u.forbidden FROM  `_user` u limit 10 offset #{pages}
+	</select>
+	<select id="countUsers" resultType="Integer">
+		select count(*) from _user
+	</select>
+	<select id="searchByUserName" resultType="com.store.store.entity.User" parameterType="com.store.store.entity.User">
+		SELECT u.userId,u.userName,u.phone,u.role,u.name,u.forbidden FROM  `_user` u WHERE u.userName = #{userName}
+	</select>
+	<insert id="addUser">
+		insert into `_user`(userName,phone,password,role,name,forbidden,del)
+		 values (
+		 #{userName},
+		 #{phone},
+		 #{password},
+		 #{role},
+		 #{name},
+		 #{forbidden}
+		 )
+	</insert>
+	<update id="updateUser">
+		  update `_user` set userName = #{userName},phone=#{phone},password=#{password},
+		  role=#{role},name=#{name},forbidden=#{forbidden}
+		  where userId = #{userId}
+	</update>
 </mapper>

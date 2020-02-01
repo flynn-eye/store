@@ -9,6 +9,11 @@ import javax.validation.constraints.Max;
 import java.util.List;
 @Repository
 public interface UserMapper {
-    public User loginByPassword(User users);
-    public User loginByPhone(User users);
+     User loginByPassword(User users);
+     User loginByPhone(User users);
+     List<User> getUserList(Integer pages);
+     Integer countUsers();
+     List<User>  searchByUserName(User user);
+     Integer addUser(User user);
+     Integer updateUser(User user);
 }

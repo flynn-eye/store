@@ -6,5 +6,5 @@ import lombok.Data;
 public class Window {
     Integer windowId;
     Integer windowNum;
-    
+    Integer userId;
 }
