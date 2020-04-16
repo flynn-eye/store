@@ -7,4 +7,5 @@ public class FoodClass {
     Integer classId;
     String className;
     Integer parentId;
+    String parentName;
 }

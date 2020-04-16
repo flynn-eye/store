@@ -36,4 +36,7 @@ public class UserService {
     public Integer updateUser(User user){
         return  userMapper.updateUser(user);
     }
+    public User findUserById(User user){
+        return userMapper.findUserById(user);
+    }
 }

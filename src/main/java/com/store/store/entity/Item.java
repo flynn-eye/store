@@ -10,6 +10,7 @@ public class Item {
     Integer lastPrice;
     String priceCharts;
     Integer classId;
-    Integer uintId;
-
+    String unitId;
+    String parentName;
+    String childName;
 }

@@ -7,4 +7,5 @@ public class Window {
     Integer windowId;
     Integer windowNum;
     Integer userId;
+    Integer wareHouseId;
 }

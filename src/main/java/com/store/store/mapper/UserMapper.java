@@ -16,4 +16,5 @@ public interface UserMapper {
      List<User>  searchByUserName(User user);
      Integer addUser(User user);
      Integer updateUser(User user);
+     User findUserById(User user);
 }

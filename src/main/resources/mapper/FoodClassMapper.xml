@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.FoodClassMapper">
+    <insert id="addParentClass">
+        insert into `_foodclass`(className) values (#{className});
+    </insert>
+    <select id="getParentClass" resultType="com.store.store.entity.FoodClass">
+		select classId,className from `_foodclass` where parentId is null
+    </select>
+    <select id="getClassIdByName" resultType="com.store.store.entity.FoodClass">
+        select * from `_foodclass` where className = #{parentName}
+    </select>
+    <insert id="addChildClass">
+        insert into `_foodclass`(className,parentId) values (#{className},#{parentId});
+    </insert>
+    <select id="getChildClass" resultType="com.store.store.entity.FoodClass">
+        select classId,className,parentId from `_foodclass` where parentId = #{parentId}
+    </select>
+    <insert id="addItem">
+        insert into `_item`(itemName,itemQgp,classId,unitId) values (#{itemName},#{itemQgp},#{classId},#{unitId});
+    </insert>
+    <select id="getItem" resultType="com.store.store.entity.Item">
+        select * from `_item` where classId = #{classId}
+    </select>
+    <delete id="delClass">
+      delete from `_foodclass` where classId = #{classId}
+    </delete>
+    <delete id="delClassByParentId">
+        delete from `_foodclass` where parentId = #{classId}
+    </delete>
+    <delete id="delItemByParentId">
+        delete from `_item` where classId = #{classId}
+    </delete>
+    <delete id="delItemByItemId">
+        delete from `_item` where itemId = #{itemId}
+    </delete>
+    <update id="updateItem">
+        update `_item` set itemName=#{itemName},itemQgp=#{itemQgp},lastPrice=#{lastPrice},
+        unitId=#{unitId}
+         where itemId=#{itemId}
+    </update>
+</mapper>

@@ -33,8 +33,13 @@ public class UserController {
         System.out.println(user);
         return  userService.addUser(user);
     }
-    @PostMapping("/update")
+    @PutMapping("/update")
     public Integer updateUser(@RequestBody User user){
+        System.out.println(user.getForbidden().getClass());
         return userService.updateUser(user);
+    }
+    @PostMapping("/findUserById")
+    public User findUserById(@RequestBody User user){
+        return userService.findUserById(user);
     }
 }

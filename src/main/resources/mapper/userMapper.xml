@@ -14,7 +14,7 @@
 		SELECT u.userId,u.userName,u.phone,u.role,u.name,u.forbidden FROM  `_user` u WHERE u.userName = #{userName}
 	</select>
 	<insert id="addUser">
-		insert into `_user`(userName,phone,password,role,name,forbidden,del)
+		insert into `_user`(userName,phone,password,role,name,forbidden)
 		 values (
 		 #{userName},
 		 #{phone},
@@ -24,9 +24,31 @@
 		 #{forbidden}
 		 )
 	</insert>
-	<update id="updateUser">
-		  update `_user` set userName = #{userName},phone=#{phone},password=#{password},
-		  role=#{role},name=#{name},forbidden=#{forbidden}
-		  where userId = #{userId}
+	<update id="updateUser" parameterType="com.store.store.entity.User">
+		  update `_user`
+		  <set>
+			  <if test="userId!=null and userId!=''">
+
+			  </if>
+			  <if test="userName!=null and userName!=''">
+				userName = #{userName},phone=#{phone},
+			  </if>
+			  <if test="password!=null and password!=''">
+				  password=#{password},
+			  </if>
+			  <if test="name!=null and name!=''">
+				  name=#{name},
+			  </if>
+			  <if test="role!=null and role!=''">
+				  role=#{role},
+			  </if>
+			  <if test="forbidden!=null and forbidden!=''">
+				  forbidden=#{forbidden},
+			  </if>
+		  </set>
+		  where userId = #{userId};
 	</update>
+	<select id="findUserById"  resultType="com.store.store.entity.User">
+		select * from `_user` where userId = #{userId};
+	</select>
 </mapper>
