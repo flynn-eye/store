@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
      User loginByPassword(User users);
-     User loginByPhone(User users);
+     List<User> loginByPhone(User users);
      List<User> getUserList(Integer pages);
      Integer countUsers();
      List<User>  searchByUserName(User user);

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Window {
     Integer windowId;
-    Integer windowNum;
+    String windowNum;
     Integer userId;
     Integer wareHouseId;
 }

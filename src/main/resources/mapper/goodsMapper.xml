@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.GoodsMapper">
+    <insert id="insertGoods">
+        insert into `_goods` (itemId,wareHouseId,supplierId,inTime,weight,orderId)
+         values (
+         #{itemId},
+          #{wareHouseId},
+           #{supplierId},
+            #{inTime},
+             #{weight},
+              #{orderId}
+         );
+    </insert>
+    <update id="endInput">
+        update `_order` set status  = 3,rate = #{rate} where orderId = #{orderId} ;
+    </update>
+    <select id="getGoods" resultType="com.store.store.VO.GoodsVo">
+        SELECT g.goodsId,g.itemId,g.wareHouseId,g.supplierId,g.inTime,g.orderId,g.weight,s.supplierName,i.itemName,i.itemQgp,i.unitId ,w.name from `_goods` g
+ LEFT JOIN `_supplier` s on g.supplierId = s.supplierId
+LEFT JOIN `_item` i on i.itemId = g.itemId
+LEFT JOIN `_warehouse` w on g.wareHouseId = w.wareHouseId
+    </select>
+    <select id="getOrders" resultType="com.store.store.VO.OrderVo">
+ SELECT o.orderId,o.time,o.supplierId,o.price,o.`status`,b.biddingId,b.detail,s.supplierName,f.className from `_order` o
+LEFT JOIN `_bidding` b on o.orderId = b.orderId and b.supplierId = o.supplierId
+LEFT JOIN `_supplier` s on s.supplierId = o.supplierId
+LEFT JOIN `_foodclass` f on f.classId = o.classId
+ HAVING `status`!=1
+    </select>
+</mapper>

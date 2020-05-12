@@ -1,6 +1,9 @@
 package com.store.store;
 
+import com.store.store.Service.BiddingService;
+import com.store.store.Service.OrderService;
 import com.store.store.cache.User;
+import com.store.store.mapper.GoodsMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,12 +17,18 @@ import javax.rmi.CORBA.StubDelegate;
 @SpringBootTest
 class StoreApplicationTests {
     @Autowired
+    OrderService orderService;
+    @Autowired
     RedisTemplate redisTemplate;
     @Autowired
     User user;
+    @Autowired
+    BiddingService biddingService;
+    @Autowired
+    GoodsMapper goodsMapper;
     @Test
     void contextLoads() {
-
+        System.out.println(goodsMapper.getGoods());
     }
     @Test
     void redisTestSet(){

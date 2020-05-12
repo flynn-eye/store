@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.BiddingMapper">
+<select id="getBidding" resultType="com.store.store.VO.AddBidding">
+    select * from `_bidding` where time = #{time}
+</select>
+    <update id="biddingSuccess">
+      update `_order` set supplierId = #{supplierId},price = #{price},status = 2  where orderId = #{orderId} ;
+    </update>
+    <select id="getOrder" resultType="com.store.store.entity.Order">
+      select * from `_order` where time = #{time} and status = 2;
+    </select>
+    <select id="getSupplierById" resultType="com.store.store.entity.Supplier">
+        select * from `_supplier` where supplierId = #{supplierId};
+    </select>
+    <select id="getWareHouseByUserId" resultType="com.store.store.entity.WareHouse">
+        select * from `_warehouse` where userId = #{userId};
+    </select>
+</mapper>

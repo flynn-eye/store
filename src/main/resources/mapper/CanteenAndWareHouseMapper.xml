@@ -13,4 +13,28 @@
     <select id="userIsInCanteen" resultType="com.store.store.entity.WareHouse">
         select * from `_warehouse`  where userId = #{userId}
     </select>
+    <update id="warehouseUserId">
+        update `_warehouse` set userId = #{userId} where wareHouseId = #{wareHouseId}
+    </update>
+    <insert id="addWindow">
+        insert into `_window` (windowNum,wareHouseId) values (#{windowNum},#{wareHouseId})
+    </insert>
+    <select id="getWindowByWareHouseId" resultType="com.store.store.entity.Window">
+        select * from `_window` where wareHouseId = #{wareHouseId}
+    </select>
+    <select id="getUserByRoleIs2" resultType="com.store.store.entity.User">
+        select * from `_user`  where role =2
+    </select>
+    <select id="userIsInWindow" resultType="com.store.store.entity.Window">
+        select * from `_window` where userId= #{userId}
+    </select>
+    <update id="updateWindowById">
+        update `_window` set userId = #{userId} where windowId = #{windowId}
+    </update>
+    <delete id="delWindow">
+        delete from `_window` where windowId = #{windowId}
+    </delete>
+    <delete id="delWareHouse">
+        delete from `_warehouse` where  wareHouseId = #{wareHouseId}
+    </delete>
 </mapper>

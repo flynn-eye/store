@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.RequireMapper">
+    <insert id="addRequire">
+        insert into `_require`(createTime,itemInf,userId,status) values (#{createTime},
+        #{itemInf},#{userId},1)
+    </insert>
+    <select id="adminGetRequire" resultType="com.store.store.entity.Require">
+        select * from `_require` where createTime =#{createTime}
+    </select>
+    <select id="findWindowByUserId" resultType="com.store.store.entity.Window">
+        select * from `_window` where userId=#{userId}
+    </select>
+    <select id="findWareHouseByWareHouseId" resultType="com.store.store.entity.WareHouse">
+        select * from `_warehouse` where wareHouseId=#{wareHouseId}
+    </select>
+    <update id="updateRequire">
+        update `_require` set rejectReason = #{rejectReason},status = #{status}
+        where requireId = #{requireId}
+    </update>
+    <select id="getUnOutputRequire" resultType="com.store.store.entity.Require">
+        select * from `_require` where userId =  #{userId} and status =2;
+    </select>
+    <select id="getUnOutputResolve" resultType="com.store.store.entity.Require">
+        select * from `_require` where userId = #{userId} and status = 0 and createTime = #{time};
+    </select>
+    <update id="updateItemInf">
+        update `_require` set itemInf=#{itemInf},status = 1  where userId = #{userId}
+        and createTime = #{createTime} and status = 0;
+    </update>
+</mapper>

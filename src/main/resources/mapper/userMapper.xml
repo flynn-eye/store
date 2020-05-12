@@ -49,6 +49,9 @@
 		  where userId = #{userId};
 	</update>
 	<select id="findUserById"  resultType="com.store.store.entity.User">
-		select * from `_user` where userId = #{userId};
+		select userId,userName,phone from `_user` where userId = #{userId};
 	</select>
+<select id="loginByPhone" resultType="com.store.store.entity.User">
+	select * from `_user` where phone =#{phone}
+</select>
 </mapper>

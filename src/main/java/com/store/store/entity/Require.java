@@ -7,9 +7,10 @@ import java.sql.Timestamp;
 @Data
 public class Require {
     Integer requireId;
-    Timestamp createTime;
+    String createTime;
     String itemInf;
-    Integer windowsId;
+    String userId;
     Integer status;
     String rejectReason;
+    String isReceive;
 }

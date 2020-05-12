@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.OutputMapper">
+    <select id="getWareHouseByUserId" resultType="com.store.store.entity.WareHouse">
+        select * from `_warehouse` where userId =#{userId};
+    </select>
+    <select id="getRequireIs2ByUserId" resultType="com.store.store.entity.Require">
+        select * from `_require` where status = 2 and userId = #{userId};
+    </select>
+    <select id="findRequire" resultType="com.store.store.entity.Require">
+        select * from `_require` where requireId = #{requireId} and isReceive=null;
+    </select>
+    <update id="isReceive">
+        update `_require` set isReceive = itemInf  where requireId = #{requireId};
+    </update>
+    <update id="output">
+        update `_require` set itemInf = #{itemInf}  where requireId = #{requireId};
+    </update>
+    <update id="endOutput">
+       update `_require` set status  = 3 where requireId = #{requireId};;
+    </update>
+    <select id="findGoods" resultType="com.store.store.entity.Goods">
+        select * from `_goods` where itemId = #{itemId} order by inTime;
+    </select>
+    <update id="changeGoods">
+      update `_goods` set weight = #{weight}  where goodsId = #{goodsId}
+    </update>
+    <delete id="delGoods">
+        delete from `_goods` where goodsId = #{goodsId}
+    </delete>
+</mapper>

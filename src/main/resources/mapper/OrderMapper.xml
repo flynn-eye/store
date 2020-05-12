@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.store.mapper.OrderMapper">
+    <select id="findWindowByUserId" resultType="com.store.store.entity.Window">
+        select * from `_window` where userId = #{userId}
+    </select>
+    <insert id="addOrder">
+        insert into `_order` (`time`,detail,sendInf,classId) values (#{time},#{detail},#{sendInf},#{classId});
+    </insert>
+    <select id="getItemByItemId" resultType="com.store.store.entity.Item">
+        select * from `_item` where itemId = #{itemId};
+    </select>
+    <select id="getFoodClassByItem" resultType="com.store.store.entity.FoodClass">
+        select * from `_foodClass` where classId = #{classId}
+    </select>
+    <select id="getSupplierFoodClassId" resultType="com.store.store.entity.Supplier">
+        select * from `_supplier` where userId = #{userId};
+    </select>
+    <select id="getTodayBidding" resultType="com.store.store.entity.Order">
+        select * from `_order` where classId = #{classId} and `time` =  #{time};
+    </select>
+    <select id="getWareHouseById" resultType="com.store.store.entity.WareHouse">
+        select * from `_warehouse` where wareHouseId = #{wareHouseId};
+    </select>
+    <insert id="addBidding">
+      insert into `_bidding` (supplierId,detail,orderId,time) values (#{supplierId},#{detail},#{orderId},#{time});
+    </insert>
+    <select id="getSupplierByUser" resultType="com.store.store.entity.Supplier">
+      select * from `_supplier` where userId = #{userId};
+    </select>
+    <select id="getWaitInputOrder" resultType="com.store.store.entity.Order">
+        select * from `_order` where supplierId = #{supplierId} and status = 2;
+    </select>
+    <select id="getAddBiddingBySupplierAndOrder" resultType="com.store.store.VO.AddBidding">
+        select * from `_bidding` where supplierId = #{supplierId} and orderId = #{orderId};
+    </select>
+    <select id="findOrderInBidding" resultType="com.store.store.entity.Order">
+        select * from `_order` where  status = 1;
+    </select>
+    <select id="inBidding" resultType="com.store.store.VO.AddBidding">
+        select * from `_bidding` where orderId = #{orderId} and supplierId = #{supplierId};
+    </select>
+</mapper>

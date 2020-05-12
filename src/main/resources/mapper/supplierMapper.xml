@@ -11,4 +11,18 @@
 		 #{supplierClass},
 		 )
 	</insert>
+	<select id="isSupplierIn" resultType="com.store.store.entity.Supplier">
+		select * from  `_supplier` where userId = #{userId}
+	</select>
+	<insert id="addSupplier">
+	  	insert into `_supplier` (supplierName,userId,supplierClass) values (
+	  	#{supplierName},#{userId},#{supplierClass}
+	  	);
+	</insert>
+	<select id="getSupplier" resultType="com.store.store.entity.Supplier">
+		select * from `_supplier`
+	</select>
+	<select id="getFoodClassById" resultType="com.store.store.entity.FoodClass">
+		select * from `_foodclass` where classId = #{classId};
+	</select>
 </mapper>

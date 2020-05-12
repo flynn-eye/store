@@ -11,7 +11,7 @@ public class Goods {
     Integer wareHouseId;
     Integer classId;
     Integer supplierId;
-    Timestamp inTime;
+    String inTime;
     Integer orderId;
     Integer requireId;
     Integer windowId;
